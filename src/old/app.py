@@ -1,6 +1,7 @@
 from urllib.request import Request, urlopen
 from urllib.error import URLError, HTTPError
 from bs4 import BeautifulSoup
+from conta import Conta
 
 def tratamento_html(input):
     html = input.decode('utf-8')
