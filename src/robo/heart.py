@@ -4,6 +4,7 @@ import datetime
 from stock import Stock
 from scraping import Scraping
 from quote import Quote
+from repo.mongo import Mongo
 
 class Heart:
 
@@ -19,10 +20,7 @@ class Heart:
             value = self.__scraping.get_stock_value(stock)
             list_quote.append(Quote(stock.codigo, date_now, value))
 
-        print('CAPTURA:')
-
-        for i in list_quote:
-            print(i.codigo, i.date, i.value) 
+        Mongo().insert_quote(list_quote)
 
     def play(self):
         schedule.every(10).seconds.do(self.scraping_task)
