@@ -17,17 +17,25 @@ class Heart:
         list_quote = []
 
         for stock in self.__stocks:
+            print(f'Obtendo valor de {stock.codigo}...')
             value = self.__scraping.get_stock_value(stock)
             list_quote.append(Quote(stock.codigo, date_now, value))
 
-        Mongo().insert_quote(list_quote)
+        Mongo().insert_quotes(list_quote)
+        print(f'Valores inseridos no banco :)')
 
     def play(self):
-        schedule.every(10).seconds.do(self.scraping_task)
+        schedule.every(1).minutes.do(self.scraping_task)
 
         self.__stocks = []
         self.__stocks.append(Stock('CEAB3', None))
         self.__stocks.append(Stock('VVAR3', None))
+        self.__stocks.append(Stock('GOLL4', None))
+        self.__stocks.append(Stock('POMO4', None))
+        self.__stocks.append(Stock('COGN3', None))
+        self.__stocks.append(Stock('MRFG3', None))
+        self.__stocks.append(Stock('PETR4', None))
+        self.__stocks.append(Stock('SMLS3', None))
 
         self.__scraping.set_urls(self.__stocks)
         
