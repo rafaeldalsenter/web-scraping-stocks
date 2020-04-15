@@ -1,17 +1,8 @@
 class Stock:
-    def __init__(self, codigo, nome, sufixo_url):
+    def __init__(self, codigo, url):
         self.__codigo = codigo
-        self.__nome = nome
-        self.__sufixo_url = sufixo_url
+        self.__url = url
     
-    @property
-    def nome(self):
-        return self.__nome
-
-    @nome.setter
-    def nome(self, nome):
-        self.__nome = nome
-
     @property
     def codigo(self):
         return self.__codigo
@@ -21,9 +12,9 @@ class Stock:
         self.__codigo = codigo
 
     @property
-    def sufixo_url(self):
-        return self.__sufixo_url
+    def url(self):
+        return self.__url
 
-    @sufixo_url.setter
-    def sufixo_url(self, sufixo_url):
-        self.__sufixo_url = sufixo_url
+    @url.setter
+    def url(self, url):
+        self.__url = url
