@@ -21,7 +21,6 @@ class Scraping:
     def set_urls(self, list):
         req = Request(URL_STOCKS_LIST, headers = HEADER_BASE)
         response = urlopen(req)
-
         html = response.read()
         soup = BeautifulSoup(self.__tratamento_html(html), 'html.parser')
 
