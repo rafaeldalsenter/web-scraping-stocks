@@ -9,3 +9,18 @@ services:
       MONGO_INITDB_ROOT_PASSWORD: root
     ports:
       - "27017:27017"
+    networks: 
+      - default_network
+  robo:
+    image: rafaeldalsenter/web-scraping-stocks
+    container_name: robo
+    environment: 
+      MONGODB_CONNECTIONSTRING: 'mongodb://root:root@db-mongo:27017'
+      STOCKS: 'VVAR3,CEAB3'
+    depends_on: 
+      - db-mongo
+    networks: 
+      - default_network
+networks: 
+  default_network:
+    driver: bridge

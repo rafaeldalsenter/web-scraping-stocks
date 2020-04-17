@@ -1,10 +1,13 @@
 import schedule
 import time
 import datetime
+import os
 from models.stock import Stock
 from scraping import Scraping
 from models.quote import Quote
 from repo.mongo import Mongo
+
+MINUTES_SCHEDULE = 1
 
 class Heart:
 
@@ -12,7 +15,7 @@ class Heart:
         self.__stocks = None
         self.__scraping = Scraping()
  
-    def scraping_task(self):
+    def __scraping_task(self):
         date_now = datetime.datetime.now()
         list_quote = []
 
@@ -26,31 +29,25 @@ class Heart:
         Mongo().insert_quotes(list_quote)
         print('Values inserted in MongoDB database')
 
+    def __return_stocks_from_environ(self):
+        stocks = os.environ['STOCKS'].split(',')
+        
+        result = []
+
+        for stock in stocks:
+            result.append(Stock(stock, None))
+
+        return result
+
     def play(self):
-        schedule.every(1).minutes.do(self.scraping_task)
+        schedule.every(MINUTES_SCHEDULE).minutes.do(self.__scraping_task)
 
-        self.__stocks = []
-        # self.__stocks.append(Stock('CEAB3', None))
-        # self.__stocks.append(Stock('VVAR3', None))
-        # self.__stocks.append(Stock('GOLL4', None))
-        # self.__stocks.append(Stock('POMO4', None))
-        # self.__stocks.append(Stock('COGN3', None))
-        # self.__stocks.append(Stock('MRFG3', None))
-        # self.__stocks.append(Stock('PETR4', None))
-        # self.__stocks.append(Stock('SMLS3', None))
-
-        #self.__scraping.set_urls(self.__stocks)
-
-        dict_stocks = Mongo().get_stocks()
-
-        self.__stocks = Stock.create_list(dict_stocks)
+        self.__stocks = self.__return_stocks_from_environ()
 
         self.__scraping.set_urls(self.__stocks)
         
         while True:
             schedule.run_pending()
             time.sleep(1)
-
-        
 
     
