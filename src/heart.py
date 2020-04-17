@@ -7,7 +7,7 @@ from scraping import Scraping
 from models.quote import Quote
 from repo.mongo import Mongo
 
-MINUTES_SCHEDULE = 1
+MINUTES_SCHEDULE = 10
 
 class Heart:
 
@@ -40,12 +40,14 @@ class Heart:
         return result
 
     def play(self):
+        print('Robo starting...')
         schedule.every(MINUTES_SCHEDULE).minutes.do(self.__scraping_task)
 
+        print('Capture links from stocks...')
         self.__stocks = self.__return_stocks_from_environ()
-
         self.__scraping.set_urls(self.__stocks)
         
+        print(f'Schedule started! ({MINUTES_SCHEDULE} minutes)')
         while True:
             schedule.run_pending()
             time.sleep(1)

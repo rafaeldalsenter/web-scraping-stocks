@@ -7,4 +7,4 @@ COPY requirements.txt /app
 
 RUN pip install -r requirements.txt
 
-CMD [ "python", "__init__.py" ]
+CMD [ "python", "-u", "__init__.py" ]
