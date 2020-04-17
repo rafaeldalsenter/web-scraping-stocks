@@ -1,5 +1,5 @@
 # web-scraping-stocks
-💸 Stock information scraping app in Python
+💸 Stock information scraping app
 
 Python application that makes scrapes on WebPages to collect information of stocks and insert in MongoDB database. The capture is made through a schedule.
 
