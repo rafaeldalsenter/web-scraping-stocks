@@ -1,7 +1,7 @@
 # web-scraping-stocks
 💸 Stock information scraping app in Python
 
-Python application that makes scraping on WebPages to collect information of stocks and insert in MongoDB database. The capture is made through a schedule.
+Python application that makes scrapes on WebPages to collect information of stocks and insert in MongoDB database. The capture is made through a schedule.
 
 A Docker image of the application has been created, it's available on the [Docker Hub](https://hub.docker.com/repository/docker/rafaeldalsenter/web-scraping-stocks). There are instructions on how to use the parameters.
 
