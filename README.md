@@ -13,6 +13,6 @@ There is an example docker-compose file to upload the environment, it will uploa
 docker-compose up --build -d
 ``` 
 
-| CodeFactor |
-|:---:|
-|[![CodeFactor](https://www.codefactor.io/repository/github/rafaeldalsenter/web-scraping-stocks/badge)](https://www.codefactor.io/repository/github/rafaeldalsenter/web-scraping-stocks)|
+| CodeFactor | Deploy |
+|:---:|:---:|
+|[![CodeFactor](https://www.codefactor.io/repository/github/rafaeldalsenter/web-scraping-stocks/badge)](https://www.codefactor.io/repository/github/rafaeldalsenter/web-scraping-stocks)|![Docker publish](https://github.com/rafaeldalsenter/web-scraping-stocks/workflows/Docker%20publish/badge.svg)|
